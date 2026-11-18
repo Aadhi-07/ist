@@ -1,0 +1,68 @@
+export const NAV_LINKS = [
+  {
+    label: 'Home',
+    path: '/',
+  },
+  {
+    label: 'About Us',
+    path: '/about',
+    description: 'Corporate history, leadership, technical standards, and certified capabilities.',
+    items: [
+      { label: 'Company Overview', path: '/about', desc: 'Established in 1997, partnering with Dyna-Jet Pte Ltd' },
+      { label: 'Vision & Values', path: '/about/vision-values', desc: 'Our corporate philosophy, standards & ethos' },
+      { label: 'Management & Resources', path: '/about/management-resources', desc: 'Leadership, qualified workforce & global network' },
+      { label: 'Training & Development', path: '/about/training-development', desc: 'Certified safety & specialized skills training' },
+      { label: 'Technical Standards', path: '/about/technical-standards', desc: 'ISO, ASME, NACE & SSPC compliance' },
+      { label: 'Safety Management', path: '/about/safety-management', desc: 'Zero-harm policy & explosive environment safety' },
+      { label: 'Industrial Relations', path: '/about/industrial-relations', desc: 'Harmonious workforce & client partnerships' },
+      { label: 'Major Contracts', path: '/about/major-contracts', desc: 'Track record with regional & international energy leaders' },
+    ],
+  },
+  {
+    label: 'Services',
+    path: '/services',
+    isMega: true,
+    description: 'Specialist industrial cleaning, surface preparation, cold cutting, and non-destructive inspection.',
+    items: [
+      { label: 'High Pressure Water Jetting', path: '/services/high-pressure-water-jetting', desc: 'Heat exchangers, boiler tubes, pipework & tank cleaning' },
+      { label: 'Surface Preparation & Coating', path: '/services/surface-preparation-coating', desc: 'Abrasive blasting, hydro-blasting & protective painting' },
+      { label: 'CCTV Inspection', path: '/services/cctv-inspection', desc: 'Closed-circuit surveys for process pipes & boilers' },
+      { label: 'Cold Cutting Systems', path: '/services/cold-cutting', desc: 'Spark-free abrasive water jet cutting in explosive zones' },
+      { label: 'Chemical Cleaning', path: '/services/chemical-cleaning', desc: 'Flushing, pickling, passivation, pigging & drying' },
+      { label: 'Catalyst Transfer', path: '/services/catalyst-transfer', desc: 'Safe loading, unloading & vacuum extraction systems' },
+      { label: 'Leak Detection', path: '/services/leak-detection', desc: 'Helium testing, pressure testing & pre-commissioning' },
+      { label: 'Friction Stud Welding', path: '/services/friction-welding', desc: 'Solid-phase forge welding in air, subsea & hazardous zones' },
+    ],
+  },
+  {
+    label: 'Equipment',
+    path: '/equipment',
+    isMega: true,
+    description: 'Heavy-duty offshore & industrial equipment available for turnkey project deployment or equipment rental.',
+    items: [
+      { label: 'High Pressure Pumps', path: '/equipment/high-pressure-pumps', desc: 'Up to 45,000 PSI / 3,100 bar, skids & containerized units' },
+      { label: 'Dredging & Slurry Pumps', path: '/equipment/dredging-pumps', desc: 'Heavy fluid transfer, marine desilting & desludging' },
+      { label: 'Hydraulic Power Packs', path: '/equipment/hydraulic-power-packs', desc: 'Diesel & electric driven units for topside & offshore' },
+      { label: 'CCTV & Wellhead Cameras', path: '/equipment/camera-systems', desc: 'Armored umbilical winch, telescopic boom, explosion-proof' },
+      { label: 'Acoustic Release Systems', path: '/equipment/acoustic-release', desc: 'Acoustic shackles 0.5T to 300T SWL for marine recovery' },
+      { label: 'Cold Cutting Systems', path: '/equipment/cold-cutting-systems', desc: 'Jetcut track cutters, pipe clamps & suspension units' },
+      { label: 'Snark Systems', path: '/equipment/snark', desc: 'Specialized robotic subsea crawler technologies' },
+    ],
+  },
+  {
+    label: 'Industries',
+    path: '/industries',
+    description: 'Providing mission-critical services to major engineering and process sectors worldwide.',
+    items: [
+      { label: 'Oil & Gas', path: '/industries/oil-and-gas', desc: 'Upstream platforms, FPSOs, refineries & pipelines' },
+      { label: 'Petrochemical', path: '/industries/petrochemical', desc: 'Ethylene crackers, reactors, columns & heat exchangers' },
+      { label: 'Oleo Chemicals', path: '/industries/oleo-chemicals', desc: 'Fatty acid storage, processing plants & tank decontamination' },
+      { label: 'Marine & Offshore', path: '/industries/marine', desc: 'Shipyards, dry docks, vessel hulls, ballast tanks & supply bases' },
+      { label: 'General Industries', path: '/industries/general-industries', desc: 'Power plants, boilers, pulp & paper, civil infrastructure' },
+    ],
+  },
+  {
+    label: 'Contact',
+    path: '/contact',
+  },
+];
