@@ -3,7 +3,13 @@ import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { buildJetHead } from '../three/buildJetHead.js';
 import { createSpray } from '../three/createSpray.js';
-import { targetAt, K_DESKTOP } from '../config/flight.js';
+import { targetAt, K_DESKTOP, K_TABLET, K_MOBILE } from '../config/flight.js';
+
+function getDeviceMode(width) {
+  if (width < 768) return 'mobile';
+  if (width < 1024) return 'tablet';
+  return 'desktop';
+}
 
 export default function JetCanvas({ ready, isHome = true }) {
   const ref = useRef(null);
@@ -22,7 +28,7 @@ export default function JetCanvas({ ready, isHome = true }) {
     let animId;
 
     try {
-      const isMobile = window.innerWidth < 760;
+      const isMobile = window.innerWidth < 768;
       renderer = new THREE.WebGLRenderer({
         canvas,
         antialias: !isMobile,
@@ -50,6 +56,15 @@ export default function JetCanvas({ ready, isHome = true }) {
         const w = window.innerWidth;
         const h = window.innerHeight;
         camera.aspect = w / h;
+        // Responsive camera framing:
+        // Desktop: 30° FOV, Tablet: 32° FOV, Mobile: 34° FOV
+        if (w < 768) {
+          camera.fov = 34;
+        } else if (w < 1024) {
+          camera.fov = 32;
+        } else {
+          camera.fov = 30;
+        }
         camera.updateProjectionMatrix();
         renderer.setSize(w, h, false);
       };
@@ -79,12 +94,15 @@ export default function JetCanvas({ ready, isHome = true }) {
 
       const clock = new THREE.Clock();
 
+      const initialMode = getDeviceMode(window.innerWidth);
+      const initialK = initialMode === 'mobile' ? K_MOBILE[0] : (initialMode === 'tablet' ? K_TABLET[0] : K_DESKTOP[0]);
+
       const cur = {
-        x: K_DESKTOP[0].x,
-        y: K_DESKTOP[0].y,
-        s: K_DESKTOP[0].s,
-        lean: K_DESKTOP[0].lean,
-        tilt: K_DESKTOP[0].tilt,
+        x: initialK.x,
+        y: initialK.y,
+        s: initialK.s,
+        lean: initialK.lean,
+        tilt: initialK.tilt,
       };
 
       const mouse = { x: 0, y: 0, sx: 0, sy: 0 };
@@ -107,9 +125,9 @@ export default function JetCanvas({ ready, isHome = true }) {
         const dt = Math.min(clock.getDelta(), 0.05);
         const t = clock.getElapsedTime();
 
-        const mob = window.innerWidth < 760;
+        const deviceMode = getDeviceMode(window.innerWidth);
         const p = window.scrollY / Math.max(window.innerHeight, 1);
-        const target = targetAt(p, mob);
+        const target = targetAt(p, deviceMode);
 
         const k = 1 - Math.exp(-dt * 3.2);
         const prevX = cur.x;
