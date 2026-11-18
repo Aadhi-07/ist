@@ -4,7 +4,17 @@ import SidebarNav from '../../components/SidebarNav.jsx';
 import CorporateFooter from '../../components/CorporateFooter.jsx';
 import { ABOUT_SUBPAGES } from '../../data/companyData.js';
 import { NAV_LINKS } from '../../data/navigation.js';
-import { CheckIcon } from '../../components/icons.jsx';
+import { CheckIcon, ShieldIcon } from '../../components/icons.jsx';
+
+const SUBPAGE_IMAGES = {
+  'vision-values': 'https://www.istsb.com/sliders/2.jpg',
+  'management-resources': 'https://www.istsb.com/sliders/3.jpg',
+  'training-development': 'https://www.istsb.com/sliders/4.jpg',
+  'technical-standards': 'https://www.istsb.com/sliders/5.jpg',
+  'safety-management': 'https://www.istsb.com/sliders/6.jpg',
+  'industrial-relations': 'https://www.istsb.com/sliders/7.jpg',
+  'major-contracts': 'https://www.istsb.com/sliders/1.jpg',
+};
 
 export default function AboutSubpage() {
   const { subpage } = useParams();
@@ -15,10 +25,12 @@ export default function AboutSubpage() {
     return <Navigate to='/about' replace />;
   }
 
+  const subpageImage = SUBPAGE_IMAGES[subpage] || 'https://www.istsb.com/sliders/1.jpg';
+
   return (
     <div className='bg-[#f7fafb] min-h-screen flex flex-col'>
       <PageHeader
-        badge='About Us'
+        badge='Corporate Governance'
         title={data.title}
         subtitle={data.subtitle}
         breadcrumbs={[
@@ -31,6 +43,23 @@ export default function AboutSubpage() {
         <div className='flex flex-col lg:flex-row gap-8 items-start'>
           {/* Main Content Area */}
           <div className='flex-1 space-y-8 w-full'>
+            {/* Visual Hero Block */}
+            <div className='bg-white rounded-xl overflow-hidden border border-neutral-200/80 shadow-sm'>
+              <div className='aspect-[21/9] max-h-64 w-full bg-neutral-100 relative'>
+                <img
+                  src={subpageImage}
+                  alt={data.title}
+                  loading='lazy'
+                  className='w-full h-full object-cover'
+                />
+                <div className='absolute bottom-3 left-3 bg-[#022731]/85 backdrop-blur-sm text-white px-3 py-1 rounded text-[11px] font-medium flex items-center gap-2'>
+                  <ShieldIcon className='w-3.5 h-3.5 text-accent-lt' />
+                  <span>I.S.T. Operational Benchmark &bull; ISO &amp; HSE Standards</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Structured Content Sections */}
             {data.content.map((sec, idx) => (
               <div key={idx} className='bg-white rounded-xl p-6 sm:p-8 border border-neutral-200/80 shadow-sm'>
                 <h2 className='text-lg sm:text-xl font-semibold text-ink tracking-tight mb-3'>{sec.heading}</h2>

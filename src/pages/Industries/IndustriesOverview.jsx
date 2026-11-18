@@ -4,7 +4,7 @@ import SidebarNav from '../../components/SidebarNav.jsx';
 import CorporateFooter from '../../components/CorporateFooter.jsx';
 import { INDUSTRIES_LIST } from '../../data/industriesData.js';
 import { NAV_LINKS } from '../../data/navigation.js';
-import { ArrowRightIcon } from '../../components/icons.jsx';
+import { ArrowRightIcon, ShieldIcon } from '../../components/icons.jsx';
 
 export default function IndustriesOverview() {
   const industryLinks = NAV_LINKS[4].items;
@@ -36,10 +36,11 @@ export default function IndustriesOverview() {
                     key={ind.id}
                     className='group bg-[#fbfdfd] rounded-xl p-4 sm:p-5 border border-neutral-200/80 hover:border-accent/40 transition-colors shadow-sm flex flex-col md:flex-row gap-5 items-start md:items-center'
                   >
-                    <div className='w-full md:w-48 h-32 rounded-lg overflow-hidden flex-shrink-0 bg-neutral-100 relative'>
+                    <div className='w-full md:w-52 h-36 rounded-lg overflow-hidden flex-shrink-0 bg-neutral-100 relative'>
                       <img
                         src={ind.heroImg}
                         alt={ind.title}
+                        loading='lazy'
                         className='w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300'
                       />
                     </div>

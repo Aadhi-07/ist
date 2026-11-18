@@ -15,6 +15,34 @@ export const COMPANY_OVERVIEW = {
   ]
 };
 
+export const CORPORATE_MILESTONES = [
+  {
+    year: '1997',
+    title: 'Company Incorporation',
+    description: 'Innovative Solutions & Technologies Sdn Bhd (I.S.T.) incorporated under the Malaysian Company Act 1965 in Penang, launching specialized industrial cleaning operations.'
+  },
+  {
+    year: '2002',
+    title: 'Strategic Association with Dyna-Jet',
+    description: 'Forged technical alliance with Dyna-Jet Pte Ltd, expanding the regional pump fleet up to 45,000 PSI (3,100 bar) and introducing automated tube cleaning systems.'
+  },
+  {
+    year: '2008',
+    title: 'Regional Hubs in Singapore & Batam',
+    description: 'Established operational logistics hubs in Singapore and Batam (Indonesia) to service offshore vessel refits, FPSO conversions, and shipyard fabrications.'
+  },
+  {
+    year: '2015',
+    title: 'Cold Cutting & Subsea Tooling',
+    description: 'Pioneered spark-free abrasive water jet cold cutting and underwater friction stud welding for live hydrocarbon plants and offshore jacket decommissioning.'
+  },
+  {
+    year: 'Present',
+    title: 'Global Operating Network',
+    description: 'Commanding multi-disciplinary engineering crews across Malaysia HQ, Singapore, Batam, Aberdeen (UK), and Abu Dhabi (UAE) supporting multinational energy majors.'
+  }
+];
+
 export const ABOUT_SUBPAGES = {
   'vision-values': {
     title: 'Vision & Values',

@@ -4,7 +4,30 @@ import SidebarNav from '../../components/SidebarNav.jsx';
 import CorporateFooter from '../../components/CorporateFooter.jsx';
 import { SERVICES_LIST } from '../../data/servicesData.js';
 import { NAV_LINKS } from '../../data/navigation.js';
-import { ArrowRightIcon } from '../../components/icons.jsx';
+import { ArrowRightIcon, ShieldIcon, CheckIcon } from '../../components/icons.jsx';
+
+const EXECUTION_METHODOLOGY = [
+  {
+    step: '01',
+    title: 'Pre-Job Engineering & Risk Assessment',
+    description: 'Detailed site inspection, metallurgy profiling, fouling severity classification, and comprehensive Job Safety Analysis (JSA).'
+  },
+  {
+    step: '02',
+    title: 'Turnkey Mobilization & Containment',
+    description: 'Rapid deployment of containerized DNV 2.7-1 pump spreads, high-pressure barriers, and certified environmental containment.'
+  },
+  {
+    step: '03',
+    title: 'Automated Cleaning & Cold Execution',
+    description: 'Utilizing remote multi-lance feeders, rotary jet heads, and spark-free cold cutting to strip severe scale without heat hazards.'
+  },
+  {
+    step: '04',
+    title: 'Quality Verification & Handover',
+    description: 'Non-destructive CCTV video inspection, hydro-testing, NACE surface certification, and formal client sign-off documentation.'
+  }
+];
 
 export default function ServicesOverview() {
   const serviceLinks = NAV_LINKS[2].items;
@@ -22,6 +45,7 @@ export default function ServicesOverview() {
         <div className='flex flex-col lg:flex-row gap-8 items-start'>
           {/* Main Grid */}
           <div className='flex-1 space-y-8 w-full'>
+            {/* Services Grid */}
             <div className='bg-white rounded-xl p-6 sm:p-8 border border-neutral-200/80 shadow-sm'>
               <h2 className='text-xl sm:text-2xl font-semibold text-ink tracking-tight mb-2'>
                 Specialized Industrial Contracting
@@ -41,6 +65,7 @@ export default function ServicesOverview() {
                         <img
                           src={svc.heroImg}
                           alt={svc.title}
+                          loading='lazy'
                           className='w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300'
                         />
                         <span className='absolute bottom-2.5 left-2.5 text-[10px] font-medium text-white/95 uppercase tracking-wide bg-[#022731]/80 px-2 py-0.5 rounded backdrop-blur-sm'>
@@ -63,6 +88,34 @@ export default function ServicesOverview() {
                       <span>Explore Technical Capabilities</span>
                       <ArrowRightIcon className='w-3 h-3' />
                     </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Execution Methodology & Safety Standards */}
+            <div className='bg-white rounded-xl p-6 sm:p-8 border border-neutral-200/80 shadow-sm'>
+              <div className='mb-6'>
+                <div className='inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-accent mb-1'>
+                  <ShieldIcon className='w-3.5 h-3.5' />
+                  <span>Standard Operating Protocol</span>
+                </div>
+                <h3 className='text-lg sm:text-xl font-semibold text-ink tracking-tight'>
+                  Execution Methodology &amp; Quality Control
+                </h3>
+                <p className='text-xs text-muted mt-1 leading-relaxed'>
+                  Our four-stage project management framework ensures maximum cleaning efficiency, zero sparks, and uncompromised site safety.
+                </p>
+              </div>
+
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
+                {EXECUTION_METHODOLOGY.map((m) => (
+                  <div key={m.step} className='bg-[#f4f8f9] p-4 rounded-lg border border-neutral-200/60 flex flex-col justify-between'>
+                    <div>
+                      <div className='text-xl font-bold text-accent font-mono mb-2'>{m.step}</div>
+                      <h4 className='text-xs sm:text-sm font-semibold text-ink mb-1.5 leading-snug'>{m.title}</h4>
+                      <p className='text-[11.5px] text-muted leading-relaxed'>{m.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>

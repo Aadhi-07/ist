@@ -5,7 +5,26 @@ import CorporateFooter from '../../components/CorporateFooter.jsx';
 import SpecsTable from '../../components/SpecsTable.jsx';
 import { EQUIPMENT_LIST, PUMP_SPECS_TABLE } from '../../data/equipmentData.js';
 import { NAV_LINKS } from '../../data/navigation.js';
-import { ArrowRightIcon } from '../../components/icons.jsx';
+import { ArrowRightIcon, ShieldIcon } from '../../components/icons.jsx';
+
+const MOBILIZATION_FORMATS = [
+  {
+    format: 'DNV 2.7-1 Offshore Spreads',
+    description: 'Certified containerized units equipped with 4-leg slings, pad eyes, and explosion-proof Zone 2 ratings for oil platforms and FPSOs.'
+  },
+  {
+    format: 'Road-Tow Mobile Units',
+    description: 'Highway-certified trailer systems for rapid dispatch to refineries, shipyards, and municipal facilities across Peninsular Malaysia.'
+  },
+  {
+    format: 'Compact Skid Packages',
+    description: 'Narrow-footprint skids tailored for tight vessel engine rooms, plant alleyways, and confined industrial access bays.'
+  },
+  {
+    format: 'Dry Hire or Wet Hire',
+    description: 'Available as standalone equipment or fully supported with certified operators, technicians, and comprehensive tooling packs.'
+  }
+];
 
 export default function EquipmentOverview() {
   const equipmentLinks = NAV_LINKS[3].items;
@@ -42,6 +61,7 @@ export default function EquipmentOverview() {
                         <img
                           src={eq.heroImg}
                           alt={eq.title}
+                          loading='lazy'
                           className='w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300'
                         />
                         <span className='absolute bottom-2.5 left-2.5 text-[10px] font-medium text-white/95 uppercase tracking-wide bg-[#022731]/80 px-2 py-0.5 rounded backdrop-blur-sm'>
@@ -64,6 +84,31 @@ export default function EquipmentOverview() {
                       <span>View Specifications &amp; Hire Rates</span>
                       <ArrowRightIcon className='w-3 h-3' />
                     </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobilization Readiness */}
+            <div className='bg-white rounded-xl p-6 sm:p-8 border border-neutral-200/80 shadow-sm'>
+              <div className='mb-4'>
+                <div className='inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-accent mb-1'>
+                  <ShieldIcon className='w-3.5 h-3.5' />
+                  <span>Deployment Configurations</span>
+                </div>
+                <h3 className='text-lg sm:text-xl font-semibold text-ink tracking-tight'>
+                  Mobilization Readiness &amp; Packaging Formats
+                </h3>
+                <p className='text-xs text-muted mt-1 leading-relaxed'>
+                  Our fleet is prepared for swift deployment across onshore refineries, petrochemical complexes, and offshore marine vessels.
+                </p>
+              </div>
+
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                {MOBILIZATION_FORMATS.map((mf, idx) => (
+                  <div key={idx} className='bg-[#f4f8f9] p-4 rounded-lg border border-neutral-200/60'>
+                    <h4 className='text-xs sm:text-[13px] font-semibold text-ink mb-1'>{mf.format}</h4>
+                    <p className='text-[11.5px] text-muted leading-relaxed'>{mf.description}</p>
                   </div>
                 ))}
               </div>

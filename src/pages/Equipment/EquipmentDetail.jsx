@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import PageHeader from '../../components/PageHeader.jsx';
 import SidebarNav from '../../components/SidebarNav.jsx';
 import CorporateFooter from '../../components/CorporateFooter.jsx';
@@ -6,6 +6,35 @@ import SpecsTable from '../../components/SpecsTable.jsx';
 import ContactForm from '../../components/ContactForm.jsx';
 import { EQUIPMENT_LIST } from '../../data/equipmentData.js';
 import { NAV_LINKS } from '../../data/navigation.js';
+import { ArrowRightIcon, ShieldIcon } from '../../components/icons.jsx';
+
+const RELATED_SERVICES_MAP = {
+  'high-pressure-pumps': [
+    { title: 'High Pressure Water Jetting', path: '/services/high-pressure-water-jetting', desc: 'Precision cleaning up to 45,000 PSI for tubes and tanks.' },
+    { title: 'Surface Preparation & Coating', path: '/services/surface-preparation-coating', desc: 'Abrasive blasting and UHP hydro-blasting standards.' }
+  ],
+  'dredging-pumps': [
+    { title: 'Chemical Cleaning & Decontamination', path: '/services/chemical-cleaning', desc: 'Circulation cleaning, pickling, and high-volume flushing.' }
+  ],
+  'hydraulic-power-packs': [
+    { title: 'Cold Cutting Systems', path: '/services/cold-cutting', desc: 'Spark-free abrasive water jet cutting for hazardous zones.' },
+    { title: 'Friction Stud Welding', path: '/services/friction-welding', desc: 'Hydromarine solid-phase forge welding in air and subsea.' }
+  ],
+  'camera-systems': [
+    { title: 'CCTV Inspection', path: '/services/cctv-inspection', desc: 'Remote optical visual inspection for inaccessible pipelines.' }
+  ],
+  'acoustic-release': [
+    { title: 'Friction Stud Welding', path: '/services/friction-welding', desc: 'Subsea asset attachment and recovery engineering.' }
+  ],
+  'cold-cutting-systems': [
+    { title: 'Cold Cutting Systems', path: '/services/cold-cutting', desc: 'Spark-free abrasive water jet cutting for live pipelines.' },
+    { title: 'Friction Stud Welding', path: '/services/friction-welding', desc: 'Solid-phase forge welding in air and subsea.' }
+  ],
+  'snark': [
+    { title: 'CCTV Inspection', path: '/services/cctv-inspection', desc: 'Remote internal pipeline crawling and visual surveying.' },
+    { title: 'High Pressure Water Jetting', path: '/services/high-pressure-water-jetting', desc: 'Internal robotic cleaning of long-distance conduits.' }
+  ]
+};
 
 export default function EquipmentDetail() {
   const { equipmentId } = useParams();
@@ -15,6 +44,10 @@ export default function EquipmentDetail() {
   if (!eq) {
     return <Navigate to='/equipment' replace />;
   }
+
+  const relatedServices = RELATED_SERVICES_MAP[equipmentId] || [
+    { title: 'High Pressure Water Jetting', path: '/services/high-pressure-water-jetting', desc: 'Industrial hydro-jetting and cleaning.' }
+  ];
 
   return (
     <div className='bg-[#f7fafb] min-h-screen flex flex-col'>
@@ -38,6 +71,7 @@ export default function EquipmentDetail() {
                 <img
                   src={eq.heroImg}
                   alt={eq.title}
+                  loading='lazy'
                   className='w-full h-full object-cover'
                 />
               </div>
@@ -88,6 +122,65 @@ export default function EquipmentDetail() {
                 </div>
               </div>
             )}
+
+            {/* Mobilization & Hire Options */}
+            <div className='bg-white rounded-xl p-6 sm:p-8 border border-neutral-200/80 shadow-sm'>
+              <div className='mb-4'>
+                <div className='inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-accent mb-1'>
+                  <ShieldIcon className='w-3.5 h-3.5' />
+                  <span>Deployment Readiness</span>
+                </div>
+                <h3 className='text-lg sm:text-xl font-semibold text-ink tracking-tight'>
+                  Mobilization &amp; Rental Formats
+                </h3>
+              </div>
+
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-3.5'>
+                <div className='bg-[#f4f8f9] p-4 rounded-lg border border-neutral-200/50'>
+                  <h4 className='text-xs sm:text-[13px] font-semibold text-ink mb-1'>Dry Hire (Equipment Only)</h4>
+                  <p className='text-[11.5px] text-muted leading-relaxed'>
+                    Includes pre-delivery inspection certificates, operating manuals, and standard high-pressure connection fittings.
+                  </p>
+                </div>
+                <div className='bg-[#f4f8f9] p-4 rounded-lg border border-neutral-200/50'>
+                  <h4 className='text-xs sm:text-[13px] font-semibold text-ink mb-1'>Wet Hire (With Certified Crew)</h4>
+                  <p className='text-[11.5px] text-muted leading-relaxed'>
+                    Furnished with experienced high-pressure technicians, multi-gun manifolds, certified PPE armor, and on-site mechanical support.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Related Services */}
+            <div className='bg-white rounded-xl p-6 sm:p-8 border border-neutral-200/80 shadow-sm'>
+              <div className='mb-4'>
+                <h3 className='text-lg sm:text-xl font-semibold text-ink tracking-tight'>Supported Industrial Services</h3>
+                <p className='text-xs text-muted mt-1'>
+                  Explore turnkey service operations executed using this equipment class.
+                </p>
+              </div>
+
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-3.5'>
+                {relatedServices.map((svc, i) => (
+                  <Link
+                    key={i}
+                    to={svc.path}
+                    className='group bg-[#fbfdfd] p-4 rounded-lg border border-neutral-200/80 hover:border-accent/50 transition-colors flex flex-col justify-between'
+                  >
+                    <div>
+                      <h4 className='text-sm font-semibold text-ink group-hover:text-accent transition-colors flex items-center justify-between'>
+                        <span>{svc.title}</span>
+                        <ArrowRightIcon className='w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity' />
+                      </h4>
+                      <p className='text-xs text-muted mt-1.5 leading-relaxed'>{svc.desc}</p>
+                    </div>
+                    <span className='mt-3 text-[11.5px] font-medium text-accent flex items-center gap-1'>
+                      View Service Details &rarr;
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
 
             {/* Rental & Mobilization Quote Form */}
             <div id='quote'>
